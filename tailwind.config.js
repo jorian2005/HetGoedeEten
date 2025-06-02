@@ -4,6 +4,7 @@ import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
@@ -20,9 +21,11 @@ export default {
             colors: {
                 primary: {
                     DEFAULT: '#1C5D36',
+                    light: '#09cd57',
                 },
                 secondary: {
-                    DEFAULT: '#2D3444'
+                    DEFAULT: '#2D3444',
+                    light: '#275ede',
                 }
             }
         },
