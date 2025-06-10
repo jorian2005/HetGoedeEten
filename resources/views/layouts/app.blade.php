@@ -72,6 +72,12 @@
     <div class="flex-1 flex flex-col w-0">
         <!-- Top bar (mobile only) -->
         <div class="md:hidden flex items-center justify-between bg-white dark:bg-gray-800 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+            <button @click="sidebarOpen = true" class="text-gray-500 dark:text-gray-300 focus:outline-none focus:ring">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"
+                     viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
             <div class="text-lg font-semibold text-gray-800 dark:text-gray-200">
                 {{ config('app.name', 'Het Goede Eten') }}
             </div>
