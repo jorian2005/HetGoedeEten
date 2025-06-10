@@ -28,6 +28,7 @@ export default {
                     light: '#275ede',
                 }
             }
+
         },
     },
 

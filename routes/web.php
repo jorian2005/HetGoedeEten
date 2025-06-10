@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,9 +27,7 @@ Route::middleware([
 Route::get('/contact', function () {
     return view('contact.index');
 })->name('contact');
-Route::get('/contact', function () {
-    return view('contact.index');
-})->name('contact.send');
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::middleware(['auth'])->prefix('chef')->group(function () {
     Route::get('/', [ChefController::class, 'index'])->name('chef.index');
