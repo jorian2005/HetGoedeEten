@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\RoleController;
@@ -21,5 +22,9 @@ Route::middleware(['auth', 'can:manage roles'])->prefix('admin')->group(function
     Route::put('/roles/{role}', [RoleController::class, 'update'])->name('admin.roles.update');
 });
 
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('settings', [SettingController::class, 'edit'])->name('admin.settings.edit');
+    Route::post('settings', [SettingController::class, 'update'])->name('admin.settings.update');
+});
 
 

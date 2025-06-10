@@ -19,10 +19,10 @@ class CreateAdminUserRoles extends Seeder
         $permissions =
             [
                 'view dashboard',
-                'edit posts',
                 'manage roles',
                 'manage users',
                 'delete users',
+                'chef functions',
             ];
 
         foreach ($permissions as $name) {

@@ -36,7 +36,6 @@ class CreateReservationsAndDishesTables extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reservation_id')->constrained('reservations')->onDelete('cascade');
-            $table->foreignId('dish_id')->constrained('dishes')->onDelete('cascade');
             $table->string('status');
             $table->timestamps();
         });

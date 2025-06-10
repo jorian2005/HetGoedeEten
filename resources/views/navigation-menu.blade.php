@@ -13,19 +13,35 @@
                 {{ __('Dashboard') }}
             </x-nav-link>
         </nav>
+        <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4 pb-2">
+            <div class="text-xs uppercase my-2 px-1">{{ __('Chef') }}</div>
+            <nav class="flex flex-col">
+                <x-nav-link href="{{ route('chef.index') }}" :active="request()->routeIs('chef.index')">
+                    {{ __('Overview') }}
+                </x-nav-link>
+                <x-nav-link href="{{ route('articles.index') }}" :active="request()->routeIs('articles.*')">
+                    {{ __('Articles') }}
+                </x-nav-link>
+                <x-nav-link href="{{ route('orders.index') }}" :active="request()->routeIs('orders.*')">
+                    {{ __('Orders') }}
+                </x-nav-link>
+            </nav>
+        </div>
     </div>
-
     <div>
         <!-- Admin Section -->
             <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
                 <div class="text-xs uppercase my-2 px-1">{{ __('Admin') }}</div>
                 <nav class="flex flex-col">
-                        <x-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
-                            {{ __('Users') }}
-                        </x-nav-link>
-                        <x-nav-link href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles.*')">
-                            {{ __('Roles') }}
-                        </x-nav-link>
+                    <x-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles.*')">
+                        {{ __('Roles') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('admin.settings.edit') }}" :active="request()->routeIs('admin.settings.*')">
+                        {{ __('Settings') }}
+                    </x-nav-link>
                 </nav>
             </div>
 
