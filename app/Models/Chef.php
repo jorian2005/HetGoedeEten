@@ -19,4 +19,9 @@ class Chef extends Model
     {
         return $this->belongsTo('App\Models\Restaurant');
     }
+
+    public function ingredienten()
+    {
+        return $this->hasMany(Ingredient::class);
+    }
 }

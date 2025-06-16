@@ -13,23 +13,31 @@
                 {{ __('Dashboard') }}
             </x-nav-link>
         </nav>
+        @can('chef functions')
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4 pb-2">
             <div class="text-xs uppercase my-2 px-1">{{ __('Chef') }}</div>
             <nav class="flex flex-col">
+                @can('view orders')
                 <x-nav-link href="{{ route('chef.index') }}" :active="request()->routeIs('chef.index')">
                     {{ __('Overview') }}
                 </x-nav-link>
+                @endcan
+                @can('view articles')
                 <x-nav-link href="{{ route('articles.index') }}" :active="request()->routeIs('articles.*')">
                     {{ __('Articles') }}
                 </x-nav-link>
+                @endcan
+                @can('view orders')
                 <x-nav-link href="{{ route('orders.index') }}" :active="request()->routeIs('orders.*')">
                     {{ __('Orders') }}
                 </x-nav-link>
+                @endcan
             </nav>
         </div>
+        @endcan
     </div>
     <div>
-        <!-- Admin Section -->
+        @hasrole('admin')
             <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
                 <div class="text-xs uppercase my-2 px-1">{{ __('Admin') }}</div>
                 <nav class="flex flex-col">
@@ -44,8 +52,8 @@
                     </x-nav-link>
                 </nav>
             </div>
+        @endhasrole
 
-        <!-- Account Section -->
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4 pb-2">
             <div class="text-xs uppercase my-2 px-1">{{ __('Account') }}</div>
             <nav>

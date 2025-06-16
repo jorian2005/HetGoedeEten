@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Article; // Importeer Article
 use Illuminate\Http\Request;
 
 class DishController extends Controller
@@ -10,12 +11,13 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all();
-        return view('beheer.menukaart.index', compact('dishes'));
+        return view('dishes.index', compact('dishes'));
     }
 
     public function create()
     {
-        return view('beheer.menukaart.create');
+        $articles = Article::all();
+        return view('dishes.create', compact('articles'));
     }
 
     public function store(Request $request)
@@ -24,17 +26,31 @@ class DishController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'type' => 'required|string'
+            'type' => 'required|string',
+            'article_ids' => 'nullable|array',
+            'article_ids.*' => 'exists:articles,id',
         ]);
 
-        Dish::create($validated);
+        $dish = Dish::create([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'type' => $validated['type'],
+        ]);
 
-        return redirect()->route('beheer.menukaart.index')->with('success', 'Gerecht toegevoegd!');
+        if (isset($validated['article_ids'])) {
+            $dish->articles()->attach($validated['article_ids']);
+        }
+
+        return redirect()->route('dishes.index')->with('success', 'Gerecht toegevoegd!');
     }
 
     public function edit(Dish $dish)
     {
-        return view('beheer.menukaart.edit', compact('dish'));
+        $articles = Article::all();
+        $selectedArticleIds = $dish->articles->pluck('id')->toArray();
+
+        return view('dishes.edit', compact('dish', 'articles', 'selectedArticleIds'));
     }
 
     public function update(Request $request, Dish $dish)
@@ -43,17 +59,26 @@ class DishController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'type' => 'required|string'
+            'type' => 'required|string',
+            'article_ids' => 'nullable|array',
+            'article_ids.*' => 'exists:articles,id',
         ]);
 
-        $dish->update($validated);
+        $dish->update([
+            'name' => $validated['name'],
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'type' => $validated['type'],
+        ]);
 
-        return redirect()->route('beheer.menukaart.index')->with('success', 'Gerecht bijgewerkt!');
+        $dish->articles()->sync($validated['article_ids'] ?? []);
+
+        return redirect()->route('dishes.index')->with('success', 'Gerecht bijgewerkt!');
     }
 
     public function destroy(Dish $dish)
     {
         $dish->delete();
-        return redirect()->route('beheer.menukaart.index')->with('success', 'Gerecht verwijderd!');
+        return redirect()->route('dishes.index')->with('success', 'Gerecht verwijderd!');
     }
 }

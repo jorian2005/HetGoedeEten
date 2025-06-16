@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
-            Add New Order
+            {{__('Add New Order')}}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
             @csrf
 
             <div class="mb-4">
-                <label for="reservation_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Reservation</label>
+                <label for="reservation_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{__('Reservation')}}</label>
                 <select name="reservation_id" id="reservation_id" class="border rounded w-full p-2 dark:bg-gray-700 dark:border-gray-600">
                     @foreach($reservations as $reservation)
                         <option value="{{ $reservation->id }}">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dishes</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{__('Dishes')}}</label>
                 <div id="dish-container">
                     <div class="flex mb-2">
                         <select name="dish_ids[]" class="border rounded w-full p-2 dark:bg-gray-700 dark:border-gray-600">
@@ -49,7 +49,7 @@
                 <input type="text" value="open" readonly name="status" id="status" class="border rounded w-full p-2 dark:bg-gray-700 dark:border-gray-600">
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Order</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">{{__('Add Order')}}</button>
         </form>
     </div>
 

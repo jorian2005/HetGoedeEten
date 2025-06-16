@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Ingredient extends Model
+class Ingredient extends Pivot
 {
+    protected $table = 'ingredients';
     protected $fillable = ['dish_id', 'article_id'];
+
+    public $incrementing = false;
+    protected $primaryKey = ['dish_id', 'article_id'];
 
     public function gerecht()
     {

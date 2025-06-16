@@ -59,3 +59,12 @@ Route::middleware(['auth'])->prefix('articles')->group(function () {
     Route::delete('/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 });
 
+Route::middleware(['auth'])->prefix('dishes')->group(function () {
+    Route::get('/', [DishController::class, 'index'])->name('dishes.index');
+    Route::get('/create', [DishController::class, 'create'])->name('dishes.create');
+    Route::post('/store', [DishController::class, 'store'])->name('dishes.store');
+    Route::get('/{dish}/edit', [DishController::class, 'edit'])->name('dishes.edit');
+    Route::put('/{dish}', [DishController::class, 'update'])->name('dishes.update');
+    Route::delete('/{dish}', [DishController::class, 'destroy'])->name('dishes.destroy');
+});
+

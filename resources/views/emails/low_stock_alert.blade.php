@@ -5,9 +5,8 @@
     <title>Lage Voorraad Alert!</title>
 </head>
 <body>
-<h1>Lage Voorraad Alert!</h1>
 <p>Beste kok,</p>
-<p>De voorraad van het volgende product is onder het ingestelde minimumniveau gekomen.<br>
+<p>De voorraad van de/het volgende product(en) is onder het ingestelde minimumniveau gekomen.<br>
     Overweeg om dit product bij te bestellen.</p>
 <hr>
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
@@ -32,5 +31,7 @@
 <p>Zorg ervoor dat de voorraad snel wordt aangevuld.</p>
 <p>Met vriendelijke groet,</p>
 <p>Het voorraadbeheer systeem van {{ config('app.name') }}</p>
+
+<small>Dit is een automatisch gegenereerde e-mail. Beantwoord deze niet.</small>
 </body>
 </html>
