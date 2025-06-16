@@ -37,4 +37,5 @@ This project is licensed under the MIT License.
 
 
 ## Mail for Testing
+https://quickpoint.nl/webmail/
 ![Mail Testing Screenshot](img.png)
