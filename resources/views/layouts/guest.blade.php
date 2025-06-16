@@ -17,6 +17,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
+    @include('cookie-consent::index')
     <body class="min-h-screen">
         <div class="min-h-screen flex flex-col font-sans antialiased">
             {{ $slot }}
