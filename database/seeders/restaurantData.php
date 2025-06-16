@@ -31,7 +31,7 @@ class restaurantData extends Seeder
         $reservation1 = DB::table('reservations')->insertGetId([
             'user_id' => $user1,
             'number_of_guests' => 2,
-            'status' => 'bevestigd',
+            'status' => 'open',
             'date' => now()->toDateString(),
             'time' => '18:30:00',
             'created_at' => now(),
@@ -41,7 +41,7 @@ class restaurantData extends Seeder
         $reservation2 = DB::table('reservations')->insertGetId([
             'user_id' => $user2,
             'number_of_guests' => 5,
-            'status' => 'geannuleerd',
+            'status' => 'open',
             'date' => now()->addDays(1)->toDateString(),
             'time' => '19:00:00',
             'created_at' => now(),
@@ -51,7 +51,7 @@ class restaurantData extends Seeder
         $reservation3 = DB::table('reservations')->insertGetId([
             'user_id' => $user1,
             'number_of_guests' => 3,
-            'status' => 'in behandeling',
+            'status' => 'open',
             'date' => now()->addDays(2)->toDateString(),
             'time' => '17:45:00',
             'created_at' => now(),
@@ -90,19 +90,19 @@ class restaurantData extends Seeder
         DB::table('orders')->insert([
             [
                 'reservation_id' => $reservation1,
-                'status' => 'geserveerd',
+                'status' => 'open',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'reservation_id' => $reservation2,
-                'status' => 'geannuleerd',
+                'status' => 'open',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'reservation_id' => $reservation3,
-                'status' => 'in behandeling',
+                'status' => 'open',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -165,6 +165,46 @@ class restaurantData extends Seeder
             [
                 'dish_id' => $dish3,
                 'article_id' => $article1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        // 🛒 Order items
+        DB::table('order_items')->insert([
+            [
+                'order_id' => 1,
+                'dish_id' => $dish1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'order_id' => 1,
+                'dish_id' => $dish2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'order_id' => 2,
+                'dish_id' => $dish3,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'order_id' => 3,
+                'dish_id' => $dish1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'order_id' => 3,
+                'dish_id' => $dish2,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'order_id' => 3,
+                'dish_id' => $dish3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

@@ -9,7 +9,7 @@
         {{ isset($title) ? $title . ' - ' : '' }}
         {{ \App\Models\Setting::get('site_title') ?? config('app.name', 'Het Goede Eten') }}
     </title>
-    <link rel="icon" href="{{ asset('storage/' . \App\Models\Setting::get('site_favicon')) }}">
+    <link rel="icon" href="{{ \App\Models\Setting::get('site_favicon') ? asset('storage/' . \App\Models\Setting::get('site_favicon')) : asset('storage/assets/images/Logo.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

@@ -31,7 +31,7 @@ class LowStockAlert extends Mailable
      */
     public function build()
     {
-        return $this->subject('Low Stock Alert')
+        return $this->subject(__('Low Stock Alert'))
             ->view('emails.low_stock_alert')
             ->with([
                 'lowStockArticles' => $this->lowStockArticles,
@@ -41,7 +41,7 @@ class LowStockAlert extends Mailable
     public function envelope(): \Illuminate\Mail\Mailables\Envelope
     {
         return new \Illuminate\Mail\Mailables\Envelope(
-            subject: 'Low Stock Alert',
+            subject: __('Low Stock Alert'),
         );
     }
 

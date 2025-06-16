@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
-            Edit Order #{{ $order->id }}
+            {{__('Edit Order')}} #{{ $order->id }}
         </h2>
     </x-slot>
 
@@ -21,7 +21,7 @@
             @method('PUT')
 
             <div class="mb-4">
-                <label for="reservation_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Reservation</label>
+                <label for="reservation_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{__('Reservation')}}</label>
                 <select name="reservation_id" id="reservation_id" class="border rounded w-full p-2 dark:bg-gray-700 dark:border-gray-600">
                     @foreach($reservations as $reservation)
                         <option value="{{ $reservation->id }}" {{ $reservation->id == $order->reservation_id ? 'selected' : '' }}>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Dishes</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{__('Dishes')}}</label>
                 <div id="dish-container">
                     @foreach($order->gerechten ?? [] as $gerecht)
                         <div class="flex mb-2">
@@ -62,8 +62,11 @@
             </div>
 
             <div class="mb-4">
-                <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
-                <input type="text" name="status" id="status" value="{{ old('status', $order->status) }}" class="border rounded w-full p-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{__('Status')}}</label>
+                <select name="status" id="status" class="border rounded w-full p-2 dark:bg-gray-700 dark:border-gray-600">
+                    <option value="open" {{ old('status', $order->status) == 'open' ? 'selected' : '' }}>{{__('Open')}}</option>
+                    <option value="klaar" {{ old('status', $order->status) == 'klaar' ? 'selected' : '' }}>{{__('Ready')}}</option>
+                </select>
             </div>
 
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Update Order</button>

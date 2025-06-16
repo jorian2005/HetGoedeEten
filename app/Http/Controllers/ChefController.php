@@ -32,22 +32,22 @@ class ChefController extends Controller
     public function markeerAlsKlaar(Request $request, Order $order)
     {
         $chefmail = \App\Models\User::role('chef')->pluck('email')->toArray();
+        $lowStockArticles = [];
+
         foreach ($order->gerechten as $gerecht) {
-            foreach ($gerecht->ingredienten as $ingredient) {
+            foreach ($gerecht->dishIngredients as $ingredient) {
                 $artikel = $ingredient->artikel;
                 if ($artikel) {
                     $artikel->decrement('stock', 1);
-                }
-                if ($artikel->stock < $artikel->minimum_stock) {
-                    $key = $artikel->name;
-                    if (!isset($lowStockArticles[$key])) {
-                        $lowStockArticles[$key] = [
-                            'name' => $artikel->name,
-                            'stock' => $artikel->stock,
-                            'minimum_stock' => $artikel->minimum_stock
-                        ];
-                    } else {
-                        $lowStockArticles[$key]['stock'] += $artikel->stock;
+                    if ($artikel->stock < $artikel->minimum_stock) {
+                        $key = $artikel->name;
+                        if (!isset($lowStockArticles[$key])) {
+                            $lowStockArticles[$key] = [
+                                'name' => $artikel->name,
+                                'stock' => $artikel->stock,
+                                'minimum_stock' => $artikel->minimum_stock
+                            ];
+                        }
                     }
                 }
             }
